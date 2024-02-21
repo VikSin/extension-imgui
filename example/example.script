@@ -130,6 +130,8 @@ local function update_tab1(self)
 		self.counter = self.counter + 1
 	end
 	imgui.same_line()
+	imgui.dummy(60)
+	imgui.same_line()
 	imgui.text(("counter = %d"):format(self.counter))
 
 	imgui.separator()

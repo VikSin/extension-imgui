@@ -1525,6 +1525,28 @@ static int imgui_GetCursorScreenPos(lua_State* L)
     return 2;
 }
 
+static int imgui_Dummy(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    imgui_NewFrame();
+
+    float width = 0.0f;
+    float height = 0.0f;
+
+    if (lua_isnumber(L, 1))
+    {
+        width = lua_tonumber(L, 1);
+    }
+
+    if (lua_isnumber(L, 2))
+    {
+        height = lua_tonumber(L, 2);
+    }
+
+    ImGui::Dummy(ImVec2(width, height));
+    return 0;
+}
+
 // ----------------------------
 // ----- IMGUI PLOT -----------
 // ----------------------------
@@ -2293,6 +2315,7 @@ static const luaL_reg Module_methods[] =
     {"spacing", imgui_Spacing},
     {"separator", imgui_Separator},
     {"get_cursor_screen_pos", imgui_GetCursorScreenPos},
+    {"dummy", imgui_Dummy},
 
     {"add_line", imgui_DrawListAddLine},
     {"add_rect", imgui_DrawListAddRect},
